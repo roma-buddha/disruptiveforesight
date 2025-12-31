@@ -2,4 +2,4 @@
 Repository of Future Trends and Tendencies
 ## Contents
 
- [Intelligence X](google.com)
+* [Intelligence X](https://intelx.io/tools?tab=telegram)
