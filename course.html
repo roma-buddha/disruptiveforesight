@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Transformation Course Workspace</title>
+  <meta
+    name="description"
+    content="Digital Transformation course workspace with chapter menu, subsection navigation, and online-book style content."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="course-body">
+  <div class="course-layout">
+    <aside class="sidebar">
+      <a class="brand" href="index.html">
+        <span class="brand-mark"></span>
+        <span class="brand-text">Disruptive Foresight</span>
+      </a>
+
+      <div class="sidebar-block">
+        <p class="sidebar-label">Navigation</p>
+        <a class="sidebar-link" href="index.html">General information</a>
+        <a class="sidebar-link is-active" href="course.html">Course workspace</a>
+      </div>
+
+      <div class="sidebar-block">
+        <div class="sidebar-heading-row">
+          <p class="sidebar-label">Chapters</p>
+          <span id="chapter-count" class="sidebar-count"></span>
+        </div>
+        <nav id="chapter-menu" class="chapter-menu" aria-label="Course chapters"></nav>
+      </div>
+
+      <div class="sidebar-note">
+        <p class="eyebrow">Editing tip</p>
+        <p>Update chapter titles and content in <code>assets/js/course-data.js</code>.</p>
+      </div>
+    </aside>
+
+    <main class="course-main">
+      <section class="course-topbar">
+        <div>
+          <p class="breadcrumbs">Home / Digital Transformation / Course</p>
+          <h1 id="course-title">Digital Transformation</h1>
+          <p id="course-summary" class="course-summary"></p>
+        </div>
+        <a class="primary-button" href="index.html">Back to Overview</a>
+      </section>
+
+      <section class="course-grid">
+        <article class="spotlight-card">
+          <div class="spotlight-visual">
+            <div class="spotlight-overlay">
+              <p class="eyebrow">Current topic</p>
+              <h2 id="active-chapter-title"></h2>
+              <p id="active-chapter-hook"></p>
+            </div>
+          </div>
+
+          <div class="spotlight-meta">
+            <div>
+              <p class="meta-label">Format</p>
+              <p>Online book with guided sections</p>
+            </div>
+            <div>
+              <p class="meta-label">Approach</p>
+              <p>Strategy, systems, technology, change</p>
+            </div>
+            <div>
+              <p class="meta-label">Use</p>
+              <p>Open chapters, read subsections, attach materials later</p>
+            </div>
+          </div>
+        </article>
+
+        <aside class="progress-card">
+          <div class="progress-header">
+            <div>
+              <p class="eyebrow">Course map</p>
+              <h2>Chapter progress</h2>
+            </div>
+            <span id="progress-indicator"></span>
+          </div>
+          <div class="progress-bar" aria-hidden="true">
+            <span id="progress-fill"></span>
+          </div>
+          <ol id="progress-list" class="progress-list"></ol>
+        </aside>
+      </section>
+
+      <section class="content-grid">
+        <article class="content-card">
+          <div class="content-card-header">
+            <div>
+              <p class="eyebrow">Chapter overview</p>
+              <h2 id="chapter-heading"></h2>
+            </div>
+            <button id="toggle-subsections" class="ghost-button" type="button">
+              Collapse subsections
+            </button>
+          </div>
+
+          <p id="chapter-description" class="chapter-description"></p>
+
+          <div id="subsection-list" class="subsection-list"></div>
+        </article>
+
+        <aside class="materials-card">
+          <p class="eyebrow">Course materials</p>
+          <h2>Starter resources</h2>
+          <div id="materials-list" class="materials-list"></div>
+        </aside>
+      </section>
+    </main>
+  </div>
+
+  <script src="assets/js/course-data.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
