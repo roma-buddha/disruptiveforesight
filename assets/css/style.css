@@ -185,8 +185,8 @@ button {
 .format-panel h2 {
   margin: 0;
   font-family: "Space Grotesk", sans-serif;
-  font-size: clamp(2.6rem, 4vw, 5rem);
-  line-height: 0.98;
+  font-size: clamp(2.4rem, 3.6vw, 4.35rem);
+  line-height: 1.02;
 }
 
 .hero-text,
@@ -267,7 +267,7 @@ button {
 
 .hero-card-list {
   display: grid;
-  gap: 12px;
+  gap: 10px;
   padding-left: 18px;
   margin: 18px 0 0;
 }
@@ -291,21 +291,62 @@ button {
 
 .format-panel {
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 24px;
+  gap: 28px;
   padding: 32px 36px;
   margin-bottom: 20px;
 }
 
-.format-list {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+.section-intro {
+  max-width: 760px;
 }
 
-.format-list article {
-  border-left: 1px solid var(--line-strong);
-  padding-left: 16px;
+.section-text,
+.topics-line {
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.course-entry-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.course-entry-card {
+  display: grid;
+  gap: 14px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+}
+
+.course-entry-card h3 {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.55rem;
+}
+
+.course-entry-card p {
+  margin: 0;
+}
+
+.course-entry-card-wide {
+  grid-column: 1 / -1;
+}
+
+.course-button {
+  justify-self: start;
+  margin-top: 4px;
+}
+
+.course-layout-single {
+  grid-template-columns: 320px minmax(0, 1fr);
+}
+
+.content-grid-wide {
+  grid-template-columns: 1.2fr 0.8fr;
 }
 
 .course-body {
@@ -619,7 +660,6 @@ button {
 
 @media (max-width: 1180px) {
   .hero-panel,
-  .feature-grid,
   .format-panel,
   .course-layout,
   .course-grid,
@@ -632,9 +672,13 @@ button {
   }
 
   .spotlight-meta,
-  .format-list,
+  .course-entry-grid,
   .hero-stats {
     grid-template-columns: 1fr;
+  }
+
+  .course-entry-card-wide {
+    grid-column: auto;
   }
 }
 
