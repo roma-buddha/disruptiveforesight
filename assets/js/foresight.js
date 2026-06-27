@@ -1,6 +1,6 @@
 (function () {
-  const API_STORAGE_KEY = "foresight_openai_api_key";
-  const MODEL_NAME = "gpt-4.1-mini";
+  const API_STORAGE_KEY = "foresight_gemini_api_key";
+  const MODEL_NAME = "gemini-2.5-flash";
 
   const data = {
     disruptiveTechnologies: [
@@ -100,8 +100,8 @@
   function updateApiKeyStatus() {
     const saved = getSavedKey();
     apiKeyStatus.textContent = saved
-      ? "API key saved in this browser. Predictions are ready to generate."
-      : "No API key saved yet.";
+      ? "Gemini API key saved in this browser. Predictions are ready to generate."
+      : "No Gemini API key saved yet.";
   }
 
   function createChip(label, type, group) {
@@ -169,7 +169,7 @@
     const button = document.createElement("button");
     button.type = "button";
     button.setAttribute("aria-label", "Remove " + item.label);
-    button.textContent = "×";
+    button.textContent = "x";
     button.addEventListener("click", removeHandler);
 
     wrapper.appendChild(text);
@@ -325,7 +325,7 @@
     const apiKey = getSavedKey();
 
     if (!apiKey) {
-      setStatus("Save your API key locally before generating predictions.", true);
+      setStatus("Save your Gemini API key locally before generating predictions.", true);
       return;
     }
 
@@ -335,9 +335,9 @@
 
     const industry = state.industry.label;
 
-    setStatus("Generating foresight brief…", false);
-    fiveYearResult.innerHTML = "<p>Generating 5-year predictions…</p>";
-    tenYearResult.innerHTML = "<p>Generating 10-year predictions…</p>";
+    setStatus("Generating foresight brief...", false);
+    fiveYearResult.innerHTML = "<p>Generating 5-year predictions...</p>";
+    tenYearResult.innerHTML = "<p>Generating 10-year predictions...</p>";
     generateButton.disabled = true;
 
     const prompt = [
@@ -352,17 +352,32 @@
     ].join("\n");
 
     try {
-      const response = await fetch("https://api.openai.com/v1/responses", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + apiKey
-        },
-        body: JSON.stringify({
-          model: MODEL_NAME,
-          input: prompt
-        })
-      });
+      const response = await fetch(
+        "https://generativelanguage.googleapis.com/v1beta/models/" +
+          MODEL_NAME +
+          ":generateContent?key=" +
+          encodeURIComponent(apiKey),
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            contents: [
+              {
+                parts: [
+                  {
+                    text: prompt
+                  }
+                ]
+              }
+            ],
+            generationConfig: {
+              responseMimeType: "application/json"
+            }
+          })
+        }
+      );
 
       const result = await response.json();
 
@@ -370,9 +385,14 @@
         throw new Error(result.error && result.error.message ? result.error.message : "Prediction request failed.");
       }
 
-      const rawText = result.output_text
-        || (result.output && result.output[0] && result.output[0].content && result.output[0].content[0] && result.output[0].content[0].text)
-        || "";
+      const rawText =
+        (result.candidates &&
+          result.candidates[0] &&
+          result.candidates[0].content &&
+          result.candidates[0].content.parts &&
+          result.candidates[0].content.parts[0] &&
+          result.candidates[0].content.parts[0].text) ||
+        "";
 
       const parsed = parseJsonPayload(rawText);
 
@@ -397,20 +417,20 @@
     const value = apiKeyInput.value.trim();
 
     if (!value) {
-      setStatus("Paste an API key before saving.", true);
+      setStatus("Paste a Gemini API key before saving.", true);
       return;
     }
 
     setSavedKey(value);
     apiKeyInput.value = "";
     updateApiKeyStatus();
-    setStatus("API key saved locally in this browser.", false);
+    setStatus("Gemini API key saved locally in this browser.", false);
   });
 
   clearKeyButton.addEventListener("click", function () {
     setSavedKey("");
     updateApiKeyStatus();
-    setStatus("Saved API key cleared from this browser.", false);
+    setStatus("Saved Gemini API key cleared from this browser.", false);
   });
 
   resetCanvasButton.addEventListener("click", function () {
