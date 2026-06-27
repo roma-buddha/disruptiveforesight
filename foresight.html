@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foresight Studio | Disruptive Foresight</title>
+  <meta
+    name="description"
+    content="Interactive foresight workspace for combining trends and industries into AI-assisted 5-year and 10-year predictions."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="landing-body">
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-lockup">
+          <span class="brand-overline">Interactive Scenario Workspace</span>
+          <span class="brand-text">Foresight Studio</span>
+        </span>
+      </a>
+      <nav class="top-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="digital-transformation.html">Transformation</a>
+        <a href="digital-finance.html">Finance</a>
+        <a href="foresight.html">Foresight</a>
+        <a class="nav-button" href="index.html#courses">Back to Course Library</a>
+      </nav>
+    </header>
+
+    <main class="foresight-main">
+      <section class="foresight-hero">
+        <div class="foresight-hero-copy">
+          <p class="eyebrow">Foresight</p>
+          <h1>Build an industry scenario from live trend combinations.</h1>
+          <p>
+            Drag 3 trends and 1 industry into the canvas, then generate concise AI-assisted
+            predictions for how that combination could reshape the selected industry in 5 years and
+            again in 10 years.
+          </p>
+          <p>
+            The goal is not to produce certainty. It is to create a fast, structured way to test
+            combinations of signals and surface plausible strategic futures.
+          </p>
+        </div>
+
+        <aside class="foresight-api-card">
+          <div class="foresight-api-copy">
+            <p class="eyebrow">API Access</p>
+            <h2>Use your API key locally in the browser.</h2>
+            <p>
+              Your key is stored only in your browser on this device. It is used to call the model
+              directly when you request predictions from the canvas.
+            </p>
+          </div>
+
+          <form class="foresight-api-form" id="foresight-api-form">
+            <label for="api-key-input">OpenAI API key</label>
+            <input id="api-key-input" name="apiKey" type="password" autocomplete="off" placeholder="Paste your API key here">
+            <div class="foresight-api-actions">
+              <button class="primary-button" type="submit">Save Key Locally</button>
+              <button class="ghost-button" id="clear-key-button" type="button">Clear Saved Key</button>
+            </div>
+          </form>
+
+          <p class="foresight-helper" id="api-key-status">No API key saved yet.</p>
+        </aside>
+      </section>
+
+      <section class="foresight-workspace" aria-label="Foresight canvas workspace">
+        <aside class="foresight-sidebar">
+          <div class="foresight-group">
+            <p class="eyebrow">Trend Library</p>
+            <h2>Disruptive technologies</h2>
+            <p>Drag any 3 trend chips in total from the 4 trend groups into the canvas.</p>
+            <div class="foresight-chip-list" id="disruptive-technologies-list"></div>
+          </div>
+
+          <div class="foresight-group">
+            <h2>Social trends</h2>
+            <div class="foresight-chip-list" id="social-trends-list"></div>
+          </div>
+
+          <div class="foresight-group">
+            <h2>Political trends</h2>
+            <div class="foresight-chip-list" id="political-trends-list"></div>
+          </div>
+
+          <div class="foresight-group">
+            <h2>Technological trends</h2>
+            <div class="foresight-chip-list" id="technological-trends-list"></div>
+          </div>
+
+          <div class="foresight-group">
+            <p class="eyebrow">Industry Library</p>
+            <h2>Top industries</h2>
+            <p>Only 1 industry can be active in the canvas at a time.</p>
+            <div class="foresight-chip-list" id="industries-list"></div>
+          </div>
+        </aside>
+
+        <section class="foresight-canvas">
+          <div class="foresight-canvas-header">
+            <div>
+              <p class="eyebrow">Canvas</p>
+              <h2>Assemble the scenario.</h2>
+              <p class="foresight-canvas-note">
+                Drop 3 different trends and 1 industry into the canvas. Then generate a short
+                foresight brief covering 5-year and 10-year implications.
+              </p>
+            </div>
+            <button class="ghost-button" id="reset-canvas-button" type="button">Reset Canvas</button>
+          </div>
+
+          <div class="foresight-canvas-frame">
+            <div class="foresight-slot-grid">
+              <div class="foresight-slot trend-slot" data-slot-type="trend" data-slot-index="0">
+                <div class="foresight-slot-header">
+                  <h3>Trend 1</h3>
+                  <span>Required</span>
+                </div>
+                <div class="foresight-slot-body" id="trend-slot-0">
+                  <p class="foresight-placeholder">Drop a trend here.</p>
+                </div>
+              </div>
+
+              <div class="foresight-slot trend-slot" data-slot-type="trend" data-slot-index="1">
+                <div class="foresight-slot-header">
+                  <h3>Trend 2</h3>
+                  <span>Required</span>
+                </div>
+                <div class="foresight-slot-body" id="trend-slot-1">
+                  <p class="foresight-placeholder">Drop a different trend here.</p>
+                </div>
+              </div>
+
+              <div class="foresight-slot trend-slot" data-slot-type="trend" data-slot-index="2">
+                <div class="foresight-slot-header">
+                  <h3>Trend 3</h3>
+                  <span>Required</span>
+                </div>
+                <div class="foresight-slot-body" id="trend-slot-2">
+                  <p class="foresight-placeholder">Drop a third trend here.</p>
+                </div>
+              </div>
+
+              <div class="foresight-slot" data-slot-type="industry">
+                <div class="foresight-slot-header">
+                  <h3>Industry</h3>
+                  <span>Only one</span>
+                </div>
+                <div class="foresight-slot-body" id="industry-slot">
+                  <p class="foresight-placeholder">Drop one industry here.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="foresight-canvas-actions">
+            <button class="primary-button" id="generate-forecast-button" type="button">Generate 5-Year & 10-Year Forecasts</button>
+          </div>
+          <p class="foresight-status" id="foresight-status">Choose 3 trends and 1 industry to unlock predictions.</p>
+        </section>
+      </section>
+
+      <section class="foresight-results" aria-live="polite">
+        <div class="section-header">
+          <div>
+            <p class="section-label">Predictions</p>
+            <h2>Scenario outputs.</h2>
+          </div>
+          <p class="section-text">
+            The model will produce short, decision-oriented foresight notes rather than long essays.
+          </p>
+        </div>
+
+        <div class="result-grid">
+          <article class="result-card">
+            <p class="section-label">5 years</p>
+            <h3>Near-term industry shifts</h3>
+            <div id="five-year-result">
+              <p>Generated predictions will appear here once the canvas is complete and the API key is saved.</p>
+            </div>
+          </article>
+
+          <article class="result-card">
+            <p class="section-label">10 years</p>
+            <h3>Longer-horizon transformations</h3>
+            <div id="ten-year-result">
+              <p>Generated predictions will appear here once the canvas is complete and the API key is saved.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="assets/js/foresight.js"></script>
+</body>
+</html>

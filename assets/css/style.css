@@ -231,6 +231,15 @@ img {
   outline-offset: 3px;
 }
 
+.primary-button:disabled,
+.secondary-button:disabled,
+.ghost-button:disabled,
+.nav-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
 .page-main {
   display: grid;
   gap: 28px;
@@ -1103,10 +1112,336 @@ img {
   display: none;
 }
 
+.text-link::after {
+  content: "->";
+}
+
+.foresight-main {
+  display: grid;
+  gap: 28px;
+}
+
+.foresight-hero,
+.foresight-workspace,
+.foresight-results {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(180deg, rgba(12, 24, 43, 0.9), rgba(8, 18, 34, 0.94));
+  box-shadow: var(--shadow);
+}
+
+.foresight-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+  gap: 24px;
+  padding: 36px;
+}
+
+.foresight-hero-copy {
+  max-width: 700px;
+}
+
+.foresight-hero-copy h1,
+.foresight-canvas-header h2,
+.foresight-results h2,
+.result-card h3 {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  letter-spacing: -0.02em;
+}
+
+.foresight-hero-copy h1 {
+  font-size: clamp(3rem, 5vw, 5rem);
+  line-height: 0.9;
+}
+
+.foresight-hero-copy p,
+.foresight-api-copy p,
+.foresight-group p,
+.foresight-canvas-note,
+.foresight-status,
+.result-card p,
+.result-card li {
+  color: var(--text-muted);
+  line-height: 1.75;
+}
+
+.foresight-api-card {
+  display: grid;
+  gap: 16px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at top right, rgba(127, 167, 255, 0.22), transparent 24%),
+    linear-gradient(180deg, rgba(24, 41, 73, 0.92), rgba(10, 20, 37, 0.96));
+}
+
+.foresight-api-copy h2 {
+  margin: 0 0 10px;
+  font-size: clamp(1.9rem, 3vw, 2.8rem);
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+.foresight-api-form {
+  display: grid;
+  gap: 12px;
+}
+
+.foresight-api-form label {
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.foresight-api-form input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+}
+
+.foresight-api-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.foresight-helper {
+  margin: 0;
+  color: var(--text-subtle);
+  font-size: 0.88rem;
+}
+
+.foresight-workspace {
+  display: grid;
+  grid-template-columns: minmax(280px, 380px) minmax(0, 1fr);
+  gap: 22px;
+  padding: 28px;
+}
+
+.foresight-sidebar {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  max-height: 920px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.foresight-group {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.foresight-group h2 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+.foresight-group p {
+  margin: 0 0 14px;
+  font-size: 0.9rem;
+}
+
+.foresight-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.foresight-chip {
+  padding: 10px 14px;
+  border: 1px solid rgba(243, 248, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--text);
+  font-size: 0.9rem;
+  cursor: grab;
+  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.foresight-chip:hover,
+.foresight-chip:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(127, 167, 255, 0.4);
+  background: rgba(127, 167, 255, 0.12);
+}
+
+.foresight-chip:active {
+  cursor: grabbing;
+}
+
+.foresight-chip.is-industry {
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.foresight-canvas {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+}
+
+.foresight-canvas-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 16px;
+}
+
+.foresight-canvas-header h2 {
+  font-size: clamp(2rem, 3vw, 3rem);
+  line-height: 0.94;
+}
+
+.foresight-canvas-note {
+  max-width: 52ch;
+  margin: 10px 0 0;
+}
+
+.foresight-canvas-frame {
+  min-height: 420px;
+  padding: 24px;
+  border: 1px dashed rgba(127, 167, 255, 0.35);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at top right, rgba(127, 167, 255, 0.14), transparent 18%),
+    linear-gradient(180deg, rgba(14, 26, 48, 0.96), rgba(8, 17, 30, 0.98));
+}
+
+.foresight-slot-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.foresight-slot {
+  min-height: 120px;
+  padding: 18px;
+  border: 1px solid rgba(243, 248, 255, 0.1);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.foresight-slot.trend-slot {
+  min-height: 140px;
+}
+
+.foresight-slot.is-over {
+  border-color: rgba(127, 167, 255, 0.52);
+  background: rgba(127, 167, 255, 0.12);
+}
+
+.foresight-slot-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.foresight-slot-header h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.foresight-slot-header span {
+  color: var(--text-subtle);
+  font-size: 0.82rem;
+}
+
+.foresight-slot-body {
+  display: grid;
+  gap: 10px;
+}
+
+.foresight-placeholder {
+  margin: 0;
+  color: var(--text-subtle);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.canvas-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 100%;
+  padding: 10px 14px;
+  border: 1px solid rgba(127, 167, 255, 0.24);
+  border-radius: 999px;
+  background: rgba(127, 167, 255, 0.12);
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.canvas-chip button {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  line-height: 1;
+}
+
+.foresight-canvas-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.foresight-status {
+  min-height: 1.5em;
+  margin: 0;
+}
+
+.foresight-status.is-error {
+  color: #ffb5b5;
+}
+
+.foresight-results {
+  display: grid;
+  gap: 18px;
+  padding: 28px;
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.result-card {
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.result-card h3 {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  line-height: 0.95;
+}
+
+.result-card ul {
+  margin: 16px 0 0;
+  padding-left: 18px;
+}
+
+.result-card li + li {
+  margin-top: 10px;
+}
+
 @media (max-width: 1180px) {
   .hero-editorial,
   .definition-layout,
   .method-layout,
+  .foresight-hero,
+  .foresight-workspace,
   .course-grid,
   .content-grid,
   .content-grid-wide,
@@ -1126,6 +1461,11 @@ img {
   }
 
   .interactive-section {
+    grid-template-columns: 1fr;
+  }
+
+  .result-grid,
+  .foresight-slot-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1160,6 +1500,9 @@ img {
   .method-section,
   .course-section,
   .quote-section,
+  .foresight-hero,
+  .foresight-workspace,
+  .foresight-results,
   .course-topbar,
   .content-card,
   .progress-card,
@@ -1201,5 +1544,11 @@ img {
 
   .nav-button {
     width: 100%;
+  }
+
+  .foresight-canvas-header,
+  .foresight-slot-header {
+    flex-direction: column;
+    align-items: start;
   }
 }
